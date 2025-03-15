@@ -9,8 +9,15 @@
     border-bottom: 1px solid lightgray;
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
+}
+
+.leftmenu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 100%;
 }
 
 .rightmenu {

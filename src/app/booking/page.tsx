@@ -1,11 +1,29 @@
 import DateReserve from "@/components/DateReserve";
 import { TextField } from "@mui/material";
+import getUserProfile from "@/libs/getUserProfile";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/api/auth/[...nextauth]/authOptions";
+import dayjs from "dayjs";
 
-export default function Reservations() {
+export default async function Reservations() {
+    const session = await getServerSession(authOptions);
+    const profile = session? await getUserProfile(session.user.token) : '';
+    let createdAt = profile? dayjs(profile.data.createdAt).format('DD/MM/YYYY HH:mm:ss') : '';
+
     return (
         <main className="w-full flex flex-col items-center space-y-4">
             <div className="text-xl font-medium pt-3">Venue Booking</div>
-
+            {
+                profile? 
+                <div className="bg-white rounded-lg p-3 w-[45%]">
+                    <h1 className="font-serif text-lg font-bold">Profile:</h1>
+                    <p>Name: {profile.data.name}</p>
+                    <p>Email: {profile.data.email}</p>
+                    <p>Tel: {profile.data.tel}</p>
+                    <p>Member Since: {createdAt.toString()}</p>
+                </div> 
+                : ''
+            }
             <div className="border-black border-2 w-fit p-5 rounded-lg">
                 {/* Name */}
                 <div className="w-full max-w-md space-y-2">
