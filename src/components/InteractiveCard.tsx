@@ -24,7 +24,7 @@ export default function InteractiveCard({ children, venueName } : { children:Rea
             className='w-full h-[380px] rounded-lg shadow-lg bg-white pb-3'
             onMouseOver={(e) => onCardMouseAction(e)}
             onMouseOut={(e) => onCardMouseAction(e)}
-            onClick={(e)=>console.log("yay")}
+            // onClick={(e)=>console.log("yay")}
         >
             { children }
         </div>

@@ -5,10 +5,9 @@ export default async function userLogIn(email: string, password: string){
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({email, password}),
-    });
+    })
+    .then((res) => res.ok ? res.json() : null)
+    .catch((err) => null);
 
-    if (!response.ok)
-        throw new Error('Failed to log in');
-
-    return await response.json();
+    return response;
 }
